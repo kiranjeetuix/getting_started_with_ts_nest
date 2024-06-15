@@ -114,7 +114,8 @@ TypeScript configuration file for the project.
 
 IN root module: Add Database module in imports
 Create a database module: and add to app.module or direct import in app.module
-<!-- import { Module } from '@nestjs/common';
+<p>
+import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
@@ -125,7 +126,8 @@ import { MongooseModule } from '@nestjs/mongoose';
     }),
   ],
 })
-export class DatabaseModule {} -->
+export class DatabaseModule {}
+</p>
 
 ## creating schema
 <!-- Schema: This is used to create a schema definition for your MongoDB collection.
