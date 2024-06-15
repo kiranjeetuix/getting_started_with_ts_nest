@@ -7,8 +7,11 @@ import {
   Put,
   Delete,
 } from '@nestjs/common';
+
 import { EmployeeService } from './employee.service';
+
 import { CreateEmployeeDto } from './create-employee.dto';
+import { Employee } from './employee.schema';
 
 @Controller('employees')
 export class EmployeeController {
@@ -20,8 +23,8 @@ export class EmployeeController {
   }
 
   @Get()
-  async findAll() {
-    return this.employeeService.findAll();
+  async findAll(): Promise<Employee[]> {
+    return await this.employeeService.findAll();
   }
 
   @Get(':id')
@@ -35,6 +38,10 @@ export class EmployeeController {
     @Body() createEmployeeDto: CreateEmployeeDto,
   ) {
     return this.employeeService.update(id, createEmployeeDto);
+  }
+  @Delete()
+  async deleteMany() {
+    return this.employeeService.deleteMany();
   }
 
   @Delete(':id')

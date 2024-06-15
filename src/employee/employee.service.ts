@@ -37,7 +37,9 @@ export class EmployeeService {
       .findByIdAndUpdate(id, createEmployeeDto, { new: true })
       .exec();
   }
-
+  async deleteMany(): Promise<{ deletedCount?: number }> {
+    return this.employeeModel.deleteMany().exec();
+  }
   async delete(id: string): Promise<Employee> {
     return this.employeeModel.findByIdAndDelete(id).exec();
   }

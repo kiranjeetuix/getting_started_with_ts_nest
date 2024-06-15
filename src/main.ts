@@ -7,3 +7,7 @@ async function bootstrap() {
   console.log('listening');
 }
 bootstrap();
+
+// main-appmodule+bootstrap
+// appmodule=import=(database+employeemodule), app-Controller, app-Services
+// employeemodule= employee-Controller,employee-sevices,employee-schema
