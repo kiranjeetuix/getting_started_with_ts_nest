@@ -114,7 +114,9 @@ TypeScript configuration file for the project.
 
 IN root module: Add Database module in imports
 Create a database module: and add to app.module or direct import in app.module
-<p>
+
+# code for connection with mongoDB
+
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 
@@ -127,14 +129,14 @@ import { MongooseModule } from '@nestjs/mongoose';
   ],
 })
 export class DatabaseModule {}
-</p>
+
 
 ## creating schema
-<!-- Schema: This is used to create a schema definition for your MongoDB collection.
-Document: This is an interface provided by Mongoose that represents a MongoDB document. -->
+Schema: This is used to create a schema definition for your MongoDB collection.
+Document: This is an interface provided by Mongoose that represents a MongoDB document.
 
 Model is an instance of a schema that allows you to create, read, update, and delete documents based on that schema.
-
+# schema code
 @Schema()
 export class Cat {
   @Prop()
@@ -156,7 +158,9 @@ export const CatSchema = new mongoose.Schema({
   breed: String,
 });
 
-<!-- @Prop([String])// force that tag must of string
+# Props
+
+@Prop([String])// force that tag must of string
 tags: string[]; 
 
 Finally, the raw schema definition can also be passed to the decorator. This is useful when, for example, a property represents a nested object which is not defined as a class. For this, use the raw() function from the @nestjs/mongoose package, as follows:
@@ -166,7 +170,7 @@ Finally, the raw schema definition can also be passed to the decorator. This is 
   firstName: { type: String },
   lastName: { type: String }
 }))
-details: Record<string, any>; -->
+details: Record<string, any>;
 
 ## module .ts
 @Module: Decorator to define a module.
@@ -181,11 +185,14 @@ create: Method to create a new Employee document.
 findAll: Method to retrieve all Employee documents.
 delete: Method to delete an Employee document by ID.
 
-<!-- //exampple
+
+# explaination of wriiten code
+exampple
 findAll(): Promise<Employee[]>: This method is asynchronous (async) and retrieves all employees.
 this.employeeModel.find(): Uses Mongoose's .find() method to query all documents in the Employee collection.
 .exec(): Executes the query.
-Returns: The method returns a Promise<Employee[]> representing an array of all employees found. -->
+Returns: The method returns a Promise<Employee[]> representing an array of all employees found.
+
 ## controller.ts
 @Controller('employees'): Decorator to define a controller with a base route path (/employees).
 @Post(): Decorator for handling HTTP POST requests to create a new Employee.
@@ -205,15 +212,15 @@ The resulting document (CatDocument) is then considered "hydrated" because it in
 
 Types of Decorators
 Class Decorators: Applied to a class definition.
-<!-- import { Controller } from '@nestjs/common';
+import { Controller } from '@nestjs/common';
 
 @Controller('cats')
 export class CatsController {
   // Methods and properties here
-} -->
+}
 
 Method Decorators: Applied to a method within a class.
-<!-- import { Get } from '@nestjs/common';
+import { Get } from '@nestjs/common';
 
 @Controller('cats')
 export class CatsController {
@@ -221,13 +228,13 @@ export class CatsController {
   findAll(): string {
     return 'This action returns all cats';
   }
-} -->
+}
 
 Accessor Decorators: Applied to a getter or setter within a class.
 Property Decorators: Applied to a property within a class.
-<!-- import { Injectable } from '@nestjs/common'; -->
+import { Injectable } from '@nestjs/common';
 
-<!-- @Injectable()
+@Injectable()
 export class CatsService {
   findAll(): string {
     return 'This action returns all cats';
@@ -244,10 +251,10 @@ export class CatsController {
   findAll(): string {
     return this.catsService.findAll();
   }
-} -->
+}
 
 Parameter Decorators: Applied to a parameter of a method within a class
-<!-- import { Param } from '@nestjs/common';
+import { Param } from '@nestjs/common';
 
 @Controller('cats')
 export class CatsController {
@@ -255,7 +262,7 @@ export class CatsController {
   findOne(@Param('id') id: string): string {
     return `This action returns a #${id} cat`;
   }
-} -->
+}
 
 
 
