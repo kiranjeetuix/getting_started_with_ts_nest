@@ -6,6 +6,8 @@ import {
   Param,
   Put,
   Delete,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 
 import { EmployeeService } from './employee.service';
@@ -18,13 +20,14 @@ export class EmployeeController {
   constructor(private readonly employeeService: EmployeeService) {}
 
   @Post()
+  @UsePipes(new ValidationPipe({ transform: true }))
   async create(@Body() createEmployeeDto: CreateEmployeeDto) {
     return this.employeeService.create(createEmployeeDto);
   }
 
   @Get()
   async findAll(): Promise<Employee[]> {
-    return await this.employeeService.findAll();
+    return this.employeeService.findAll();
   }
 
   @Get(':id')

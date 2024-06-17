@@ -56,10 +56,12 @@ Configuration: Environment variables handling using @nestjs/config.
 
 
 ## Structure of nestJs
+# nest g controller users(name : eg. employee);
+
 project-name/
 │
 ├── src/
-│   ├── app.controller.ts
+│   ├── app.controller.ts 
 │   ├── app.module.ts
 │   ├── app.service.ts
 │   └── main.ts
@@ -263,6 +265,28 @@ export class CatsController {
     return `This action returns a #${id} cat`;
   }
 }
+
+## use of extends document 
+eg. you do not create a document using new mongoose but manually 
+or not returning document from mongoDB but manually 
+and function have return type set to schema 
+So it will automatically set return value to schema
+
+eg. 
+
+Document property : id
+
+async abc():Promise<Employee> {
+  let result = Employee.findOneById("");
+  return {
+    "id":"124";
+    "name":"kiran";
+  }
+}
+
+we can add our custom propeeties as well;
+here it is manually returned not from mongo, it fives error
+
 
 
 

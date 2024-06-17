@@ -1,5 +1,8 @@
+import { IsString, IsInt } from 'class-validator';
 export class CreateEmployeeDto {
+  @IsString()
   readonly name: string;
+  @IsInt()
   readonly age: number;
   readonly position: string;
 }

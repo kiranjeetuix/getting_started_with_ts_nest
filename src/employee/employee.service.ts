@@ -22,7 +22,9 @@ export class EmployeeService {
   // Returns: The method returns a Promise<Employee> representing the newly created employee after it has been saved to the database.
 
   async findAll(): Promise<Employee[]> {
-    return this.employeeModel.find().exec();
+    const result = this.employeeModel.find().exec();
+    console.log(result);
+    return result;
   }
 
   async findOne(id: string): Promise<Employee> {
