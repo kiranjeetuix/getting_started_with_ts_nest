@@ -288,6 +288,60 @@ we can add our custom propeeties as well;
 here it is manually returned not from mongo, it fives error
 
 
+## Use of class validators and class transformers
+
+# Define a DTO using class-validator decorators to enforce validation rules.
+
+import { IsString, IsInt } from 'class-validator';
+
+export class CreateUserDto {
+    @IsString()
+    readonly name: string;
+
+    @IsInt()
+    readonly age: number;
+}
+
+# Global validation pipe in main
+import { ValidationPipe } from '@nestjs/common';
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+
+async function bootstrap() {
+    const app = await NestFactory.create(AppModule);
+    app.useGlobalPipes(new ValidationPipe());
+    await app.listen(3000);
+}
+bootstrap();
+
+# Use the validation pipe in your controller to automatically validate incoming requests.
+
+import { Controller, Post, Body, UsePipes, ValidationPipe } from '@nestjs/common';
+import { CreateUserDto } from './dto/create-user.dto';
+
+@Controller('users')
+export class UsersController {
+    @Post()
+    @UsePipes(new ValidationPipe())
+    create(@Body() createUserDto: CreateUserDto) {
+        // Handle user creation logic
+    }
+}
+
+import { Controller, Post, Body, UsePipes, ValidationPipe } from '@nestjs/common';
+import { CreateUserDto } from './dto/create-user.dto';
+
+@Controller('users')
+export class UsersController {
+    @Post()
+    @UsePipes(new ValidationPipe())
+    create(@Body() createUserDto: CreateUserDto) {
+        # Handle user creation logic
+    }
+}
+
+
+
 
 
 
